@@ -46,7 +46,7 @@ When this command is invoked:
 1. **Load RPI Skill**:
 
     - Use the `rpi` skill to orchestrate the research phase
-    - Prompt: "Conduct comprehensive research for the task: {task description}. Use parallel subagents for codebase analysis, pattern discovery, and requirement gathering."
+    - Prompt: "Conduct comprehensive research for the task: {task description}. Use the rpi-research skill for parallel subagents to handle codebase analysis, pattern discovery, and requirement gathering."
 
 2. **Subagent Execution**:
 
@@ -67,7 +67,7 @@ When this command is invoked:
 
 1. **Load RPI Skill for Planning**:
 
-    - Use the `rpi` skill with prompt: "Create a detailed implementation plan based on the research in thoughts/shared/research/YYYY-MM-DD-{task-slug}.md. Use the create_plan command workflow with iterative refinement."
+    - Use the `rpi` skill with prompt: "Create a detailed implementation plan based on the research in thoughts/shared/research/YYYY-MM-DD-{task-slug}.md. Use the rpi-plan skill with iterative refinement."
 
 2. **Subagent Execution**:
 
@@ -90,7 +90,7 @@ When this command is invoked:
 
 1. **Load RPI Skill for Implementation**:
 
-    - Use the `rpi` skill with prompt: "Implement the plan from thoughts/shared/plans/YYYY-MM-DD-{task-slug}.md. Follow the implementation phases with proper testing and verification at each step."
+    - Use the `rpi` skill with prompt: "Implement the plan from thoughts/shared/plans/YYYY-MM-DD-{task-slug}.md. Use the rpi-implement skill with proper testing and verification at each step."
 
 2. **Subagent Execution**:
 
