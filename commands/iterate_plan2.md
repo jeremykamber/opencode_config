@@ -266,3 +266,22 @@ Assistant: I've found the plan. What changes would you like to make?
 User: Add more specific success criteria
 Assistant: [Proceeds with update]
 ```
+
+## Implementation Details
+
+When updating the plan, keep the following in mind:
+
+- **Follow SOLID and KISS** throughout implementation.
+
+    - **SOLID**: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion. Example: extract one responsibility into a small class or function; depend on abstractions (interfaces) not concrete implementations.
+    - **KISS**: Keep It Simple, Stupid — prefer clear, small functions over complex one-offs. Example: split a large 500-line function into smaller well-named helpers that each do one thing.
+
+- **Code snippet policy**: include focused snippets showing only the lines that must change and any small surrounding context (preferably <= 120 lines). Do NOT paste entire files (no massive 1000+ line dumps). For larger contexts, provide file:line references and short summaries instead of full contents.
+
+## Rollback/Recovery Strategy
+
+If the changes involve migrations, data changes, or breaking changes, include a Rollback/Recovery strategy in the plan:
+
+- **Rollback Plan**: How to revert if things go wrong (e.g., database rollback, revert code commit).
+- **Recovery Steps**: How to recover data if lost.
+- **Emergency Contacts**: Who to call if things break (if applicable).

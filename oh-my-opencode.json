@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "hephaestus": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "oracle": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "librarian": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "explore": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "multimodal-looker": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "prometheus": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "metis": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "momus": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "atlas": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "sisyphus-junior": {
+      "model": "github-copilot/gpt-5-mini"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "ultrabrain": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "artistry": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "quick": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "unspecified-low": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "unspecified-high": {
+      "model": "opencode-zen/minimax-m2.5"
+    },
+    "writing": {
+      "model": "github-copilot/gpt-5-mini"
+    }
+  }
+}

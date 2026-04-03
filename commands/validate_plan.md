@@ -51,10 +51,10 @@ If starting fresh or need more context:
    Compare actual changes to plan specifications.
    Return: File-by-file comparison of planned vs actual
 
-   Task 3 - Verify test coverage:
-   Check if tests were added/modified as specified.
-   Run test commands and capture results.
-   Return: Test status and any missing coverage
+    Task 3 - Verify test coverage:
+    Check if tests were added/modified as specified and that implementation followed TDD (tests-first commits present).
+    Run test commands and capture results.
+    Return: Test status, coverage metrics, and evidence that tests were authored before production code (commits or file timestamps).
    ```
 
 ### Step 2: Systematic Validation

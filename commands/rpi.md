@@ -4,7 +4,7 @@ description: Orchestrate a full Research, Plan, Implement cycle using parallel s
 
 # RPI - Research, Plan, Implement Cycle
 
-You are tasked with orchestrating a complete Research, Plan, Implement (RPI) cycle for software development tasks. This command uses the RPI skill to manage parallel subagents through each phase, with iterative human-like approval at key points. The process ensures high-quality outcomes through structured documentation, verification, and proper git workflow.
+You are tasked with orchestrating a complete Research, Plan, Implement (RPI) cycle for software development tasks. This command manages subagents through each phase, with iterative human-like approval at key points. The process ensures high-quality outcomes through structured documentation, verification, and proper git workflow.
 
 ## Initial Setup
 
@@ -43,37 +43,38 @@ When this command is invoked:
 
 ### Phase 1: Research
 
-1. **Load RPI Skill**:
+1. **Spawn Research Subagent**:
 
-    - Use the `rpi` skill to orchestrate the research phase
-    - Prompt: "Conduct comprehensive research for the task: {task description}. Use the rpi-research skill for parallel subagents to handle codebase analysis, pattern discovery, and requirement gathering."
+    - Spawn a subagent and instruct it to use the `rpi-research` skill to conduct comprehensive research on the parts of the codebase relevant to the implementation. The agent type should remain default. IT SHOULD DO THE RESEARCH ON IT'S OWN, WITHOUT SPAWNING SUBAGENTS WITHIN ITS OWN PROCESS.
+    - Prompt: "Use the `rpi-research` skill and conduct comprehensive research for the task: {task description}. Make sure to add and commit your research doc to git."
 
 2. **Subagent Execution**:
 
-    - The RPI skill will spawn parallel subagents using:
-        - `codebase-locator` to find relevant files and components
-        - `codebase-analyzer` to understand current implementation
-        - `codebase-pattern-finder` to identify existing patterns
-        - `thoughts-locator` for historical context
-        - `web-search-researcher` for external best practices if needed
+    - The RPI research skill will:
+        - find relevant files and components
+        - Understand the current implementation
+        - Identify existing patterns
+        - Gather historical context
+        - Search for external best practices on the web if needed (using web search tool)
 
 3. **Research Output Review**:
     - Read the generated research document from `thoughts/shared/research/YYYY-MM-DD-{task-slug}.md`
-    - Evaluate completeness and accuracy
+    - Evaluate completeness, accuracy, and relevance to topic/implementation
     - If insufficient, provide specific feedback to the RPI skill for additional research
     - Approve or request revisions before proceeding
 
 ### Phase 2: Plan
 
-1. **Load RPI Skill for Planning**:
+1. **Spawn Planning Subagent**:
 
-    - Use the `rpi` skill with prompt: "Create a detailed implementation plan based on the research in thoughts/shared/research/YYYY-MM-DD-{task-slug}.md. Use the rpi-plan skill with iterative refinement."
+    - Spawn a subagent and tell to use the `rpi-plan` skill to create a comprehensive plan for implementation. Be sure to pass the research document generated in the last phase in there as well. Include the research doc, and the goal of the plan. Keep the agent type default. Make sure to tell it that IT SHOULD DO THE PLANNING ON IT'S OWN, WITHOUT SPAWNING SUBAGENTS WITHIN ITS OWN PROCESS.
+    - Prompt example: "Use the `rpi-plan` skill, and create a detailed implementation plan based on the research in thoughts/shared/research/YYYY-MM-DD-{task-slug}.md."
 
 2. **Subagent Execution**:
 
-    - The RPI skill will:
-        - Spawn subagents to analyze research findings
-        - Generate comprehensive plan using existing plan templates
+    - The RPI planning skill will:
+        - Analyze research findings
+        - Generate a comprehensive plan using existing plan templates
         - Include success criteria, phases, and verification steps
 
 3. **Plan Review and Iteration**:
@@ -88,45 +89,42 @@ When this command is invoked:
 
 ### Phase 3: Implement
 
-1. **Load RPI Skill for Implementation**:
+1. **Spawn Implementation Subagent**:
 
-    - Use the `rpi` skill with prompt: "Implement the plan from thoughts/shared/plans/YYYY-MM-DD-{task-slug}.md. Use the rpi-implement skill with proper testing and verification at each step."
+    - Spawn a subagent that uses the `rpi-implement` skill to carry out implementation following TDD. Keep the agent type default.
+    - Prompt example: "Use the `rpi-implement` skill to implement the plan from thoughts/shared/plans/YYYY-MM-DD-{task-slug}.md. Ensure all of your code is of the highest quality, follows SOLID and KISS principles, enforces TDD (tests-first). Provide progress reports after each test/code iteration."
 
-2. **Subagent Execution**:
+2. **Subagent Execution (TDD-first)**:
 
-    - The RPI skill will:
-        - Create worktree if needed
-        - Execute implementation phases sequentially
-        - Run automated tests and verifications
-        - Document progress and any deviations
+    - The RPI implement skill will follow a strict TDD workflow for each implementation phase:
+        - Write tests first: the LLM must author unit/integration tests that provide full coverage for the planned change (happy paths, edge cases, and error handling) before adding production code.
+        - Run tests: execute the test suite; expect failures initially.
+        - Implement to satisfy tests: make minimal, focused code changes to make tests pass.
+        - Iterate: expand tests as needed for missing edge cases, then adjust code until all tests pass and coverage targets are met.
+        - Create worktree if needed and stage changes as distinct test-first commits (tests added first, then code changes that make them pass).
+        - Run automated tests and verifications after each change and document progress and any deviations.
 
 3. **Implementation Monitoring**:
     - Monitor subagent progress through intermediate outputs
+    - Enforce TDD discipline: each phase must show test files created first, failing tests demonstrating the expected behavior, then commits that implement the behavior and make tests pass
     - Intervene if issues arise, providing guidance
-    - Ensure each phase's success criteria are met before proceeding
+    - Ensure each phase's success criteria (including tests passing and coverage thresholds) are met before proceeding
 
 ### Phase 4: Verification
 
-1. **Call Verification Subagent**:
+1. **Verify Correctness**:
 
-    - Use the RPI skill to spawn a verification subagent
-    - Prompt: "Verify the implementation against the plan requirements. Run all automated tests, check success criteria, and identify any remaining issues."
+    - Verify the implementation against the plan requirements. Run all automated tests, check success criteria, and identify any remaining issues.
 
-2. **Verification Review**:
-
-    - Read verification report
-    - Assess implementation completeness
-    - Note any gaps or issues
-
-3. **Final Human Review**:
-    - Perform your own final check:
+2. **Final Review**:
+    - Perform your final check:
         - Code quality and patterns
         - Test coverage
         - Documentation completeness
         - Edge case handling
     - Approve final implementation or request fixes
 
-## Git Workflow and PR Creation
+## Git Workflow and PR Creation (DO NOT do the PR part if the user requests otherwise)
 
 ### Commit Changes
 

@@ -265,12 +265,12 @@ After structure approval:
 
 ---
 
-## Testing Strategy
+## Testing Strategy (TDD-first)
 
 ### Unit Tests:
 
-- [What to test]
-- [Key edge cases]
+- The plan must include concrete unit tests that the implementer (LLM) will write first during the implementation phase.
+- Specify test files, targets, and coverage expectations (lines/branches/functions) and key edge cases.
 
 ### Integration Tests:
 
@@ -367,6 +367,15 @@ After structure approval:
     - Do NOT write the plan with unresolved questions
     - The implementation plan must be complete and actionable
     - Every decision must be made before finalizing the plan
+
+## Design Principles
+
+- **Follow SOLID and KISS** throughout planning and all suggested code changes.
+  - SOLID: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion. Example: extract one responsibility into a small class or function; depend on abstractions (interfaces) not concrete implementations.
+  - KISS: Keep It Simple, Stupid — prefer clear, small functions over complex one-offs. Example: split a large 500-line function into smaller well-named helpers that each do one thing.
+
+- **Code snippet policy**: include focused snippets showing only the lines that must change and any small surrounding context (preferably <= 120 lines). Do NOT paste entire files (no massive 1000+ line dumps). For larger contexts, provide file:line references and short summaries instead of full contents.
+
 
 ## Success Criteria Guidelines
 
