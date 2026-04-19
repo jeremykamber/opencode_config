@@ -1,0 +1,106 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "max",
+      "fallback_models": [
+        {
+          "model": "opencode/big-pickle"
+        },
+        {
+          "model": "github-copilot/gpt-4.1"
+        }
+      ]
+    },
+    "hephaestus": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "medium"
+    },
+    "oracle": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "high",
+      "fallback_models": [
+        {
+          "model": "opencode/big-pickle"
+        }
+      ]
+    },
+    "librarian": {
+      "model": "github-copilot/gpt-4.1"
+    },
+    "explore": {
+      "model": "github-copilot/gpt-4.1",
+      "fallback_models": [
+        {
+          "model": "opencode/big-pickle"
+        }
+      ]
+    },
+    "multimodal-looker": {
+      "model": "github-copilot/gpt-4.1",
+      "fallback_models": [
+        {
+          "model": "opencode/big-pickle"
+        }
+      ]
+    },
+    "prometheus": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "max",
+      "fallback_models": [
+        {
+          "model": "opencode/big-pickle"
+        }
+      ]
+    },
+    "metis": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "max"
+    },
+    "momus": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "xhigh"
+    },
+    "atlas": {
+      "model": "opencode/minimax-m2.7",
+      "fallback_models": [
+        {
+          "model": "github-copilot/gpt-4.1"
+        }
+      ]
+    },
+    "sisyphus-junior": {
+      "model": "opencode-go/minimax-m2.7"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "high"
+    },
+    "ultrabrain": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "high"
+    },
+    "deep": {
+      "model": "opencode-go/minimax-m2.7",
+      "variant": "medium"
+    },
+    "artistry": {
+      "model": "opencode/big-pickle"
+    },
+    "quick": {
+      "model": "github-copilot/gpt-4.1"
+    },
+    "unspecified-low": {
+      "model": "github-copilot/gpt-4.1"
+    },
+    "unspecified-high": {
+      "model": "opencode-go/minimax-m2.7"
+    },
+    "writing": {
+      "model": "opencode/big-pickle"
+    }
+  }
+}
